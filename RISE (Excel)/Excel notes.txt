@@ -1,0 +1,49 @@
+1.Sorting in Excel:
+- it's like you want department wise data from colleges table.
+
+-many types of sorting in excel
+(1)using Ribbon in Excel (always try to sort using select cell in column so your entire data will sorting)
+   (if you select an entire column it will sorting the column but it doesn't affect on other column so it's give you inconsistent table.)
+(2)custom Sorting in Ribbon (it is use when you want to sort more than one column)
+
+
+2.Filtering in Excel: (shortcut key-"CTRL + SHIFT + L") 
+-it's like cleaning your data for your view (like filter by department name "production")
+-if you want to remove filter you can press shortcut key again or you can remove it using select filter in column name
+
+3.Remove duplicates in Excel:
+-it's removing duplicate values from your column
+- for removing you need to go in data section in ribbon. after that you have to select remove duplicates and it remove duplicate value from your column
+
+4.Validation in Excel: 
+- it's like constraint or restriction for inserting value in column
+- using Ribbon (you need to select entire column in which you want to apply validation then you go to data section and select data validation then you can apply)
+
+-Error Types in Excel:
+
+(1. #####- column isn't wide enough to display values
+2. #NAME? - Excel does not recognize text in a formula
+3. #VALUE! - Formula has the wrong type of argument
+4. #DIV/0! - formula is dividing by zero or an empty cell
+5. #REF! - Formula refers to a cell that is not valid
+6. #N/A - Formula can't find a references value)
+
+5.DATA CLEANING:
+-search
+-formatting
+-midrange
+-converting cell format
+-conditional
+-sort, filter
+-removing duplicates
+-data validation
+
+6.REFERENCE TYPE: (fn+F4 key is use to fixed the column or value)
+-it is use when we have two column A and B. a=[12,23,34,45],B=[12,33,55,79] and we want a fixed to 12 and its sum with all b values then we can use reference type $A$2+B2
+
+7.POWER: (^)
+
+--8.conditional statement:
+(1.)IF-THEN-  =if(A2>10,"greater than 10","less than 1o")
+
+
