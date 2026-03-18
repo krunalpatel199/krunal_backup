@@ -44,6 +44,142 @@
 7.POWER: (^)
 
 --8.conditional statement:
-(1.)IF-THEN-  =if(A2>10,"greater than 10","less than 1o")
+(1.)IF-THEN-   key concept: =if(condition, value_if_true, value_if_false)
+
+=if(A2>10,"greater than 10","less than 1o")
+=if(b4>=50."pass","fail")
+
+
+(2.)NESTED IF-   you can include multiple logical tests within a single formula.
+
+-example:
+*marks column B
+=if(B2>=90,"A",if(B2>=75,"B",if(B2>=60,"C",if(B2>=50,"D","F"))))
+
+
+(3.)IF with Text-
+
+-sales department get 15% bonus, IT get 20%, all other get 10%
+=if(b2="sales",15,if(b2="IT",20,10))
+
+
+(4.)IF with AND and OR-  allow you to include multiple logical test at once.   =if(logical, value_if_true, value_if_false)
+
+-example with AND:
+eligibility criteria: attendance>=75% AND exam score>=70
+=if(AND(B2>=75,C2>=70),"eligible", "not eligible")
+
+
+-example with OR:
+scholarship rule: sports>=90 OR academic>=90 (either one qualifies)
+=if(OR(B2>=90,C2>=90),"qualify", "not qualify")
+
+
+
+(5.)IF with NOT (<>)-  if you want to evaluate a case where a logical statement is not true, you can use either the NOT statement or a "<>"operator
+
+-example:
+where exam score is not 45 print "zero", otherwise print result 
+=if(NOT(C2=45),0,45)
+
+
+(6.)IFERROR -  the IFERROR statement is an excellent tool to eliminate annoying error messages (#N/A, #DIV/0! , #REF! , etc.), which is particularly useful for front-end formatting.
+
+=IFERROR(value, value_if_error)
+
+-example:
+in number table insert text
+=IFERROR(B2+C2,0)
+
+
+* Excel offers a number of different IS formulas, each of which check whether a certain condition is true:
+
+-ISBLANK: checks whether the reference cell or value is blank      =ISBLANK(B2)
+-ISNUMBER: checks whether the reference cell or value is numerical 
+-ISTEXT: checks whether the reference cell or value is a text string
+-ISERROR: checks whether the reference cell or value returns an error
+-ISEVEN: checks whether the reference cell or value is even
+-ISODD: checks whether the reference cell or value is odd
+-ISLOGICAL: checks whether the reference cell or value is a logical operator
+-ISFORMULA: checks whether the reference cell or value is a formula
+
+
+
+*TEXT FUNCTION-
+
+-upper (all capitals)  =UPPER(A4)
+-lower (all small)    =LOWER(A3)
+-proper (first letter capital after all space)      =PROPER(A5)
+-trim (remove spaces from start, end and between words (keeps only 1 space))function    =TRIM(A2)   
+
+-concatenate(&) (join text)    =CONCATENATE(A4," ",B4)    =A12 &","&" "&12&"-"&c12      (use & after whatever you want to print)
+
+-String function:
+
+1.left  (returns 2 characters, starting from the left)     =LEFT(text, [num_chars])     =LEFT(A4,3)
+2.mid   (returns 5 characters from the middle of the string, starting with position)     =MID(text, start_num, num_chars)     =MID(A4,5,4) 
+3.right (returns 3 characters starting from the right)     =RIGHT(text, [num_chars])     =RIGHT(A4,3)
+4.search (not case-sensitive) (returns the number of the character at which specific character or text string is first found)  =SEARCH(find_text, within_text, [start_num]) 
+   =SEARCH("Pro",A2)   =IFERROR(SEARCH("Pro",A2),"Not Found")    =IF(ISNUMBER(SEARCH("Pro",A2)), "Yes", "No")     =IFERROR(IF(SEARCH("Pro",A2),"yes"),"No")
+
+5.find  (case-sensitive)  =FIND(find_text, within_text, [start_num])   =FIND("@",A2)-1        =LEFT(A4,FIND("@",A4)-1)      =MID(A4,FIND("@",A4)+1,50)
+6.len  (for finding a length)  =LEN(A2)     =IF(LEN(A2)>=3,"valid","invalid")
+7.substitute (for changing text or word in string)   =SUBSTITUTE(Text, Old_text, New_text, [instance_num])  for change name  =SUBSTITUTE(A2,B2,C3)    
+  for remove space  =SUBSTITUTE(A12," ","")     for remove hyphens =SUBSTITUE(B12,"-","")     for remove plus =SUBSTITUTE(C12,"+","")
+  all together   =SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A12,"-","")," ",""),"+","")
+
+
+*fill the blank values in a sheet (go to find & select then go in to go to special then select blank and then write whatever you want and press ctrl + enter)
+
+
+
+8.TEXT   (converts a numeric value to text and assigns a particular format)    =TEXT(value, format_text)    for find month =TEXT(A2,"mmmm")
+
+9.ROW (returns row number)   =ROW(A2)-1    =concatenate(A2,"-",Row(A2)-1)
+
+
+
+*DATE TIME FUNCTION-
+
+1.Now-Today    =TODAY() (changes daily)     =NOW() include time and updates on recalculation
+
+2.EOMONTH  (use to calculate the last day of given month, or calculate the start/end dates of previous or future month.)   =EOMONTH(start_date, months)  
+           - =EOMONTH(C2,0)   (end of the month)                              
+           - =EOMONTH(C2, -1)+1 (start of the month)
+           - -EOMONTH(C2,0)+1  (start of next month) 
+
+   -Excel by default start date 1/1/1900
+
+3.Workdays, Networkday   =WORKDAY(start_date, days, [holidays]) (returns a date that is a specified number of days before or after a given start date, excluding weekends and
+                                                                 holidays (optional))        (holidays have to write in extra column then select it)
+ 
+                        -NETWORKDAYS(start_date, end_date, [holidays])  (counts the number of workdays between two dates.)    (holidays as same as workdays)
+
+4.Day, Month, Year
+
+5.Hour, Minutes, Seconds
+
+
+6.YEARFRAC (calculates the fraction of a year represented by the number of whole days between two dates)     =YEARFRAC(start_date, end_date, [basis])        
+           (it takes 0 basis by default)
+
+7.DATEDIF (calculates the number of days, month, or years between two dtes)     =DATEDIF(start_date, end_date, unit)      (it doesn't show in excel)
+          how do you want to calculate difference?
+          "D" = #of days between dates
+          "M" = #of month between dates
+          "Y" = #of year between dates
+          "MD" = #of
+
+
+*LOOKUP FUNCTIONS:
+
+1.VLOOKUP- (vertical Lookup) (when we have data in vertical format then we use VLOOKUP)  =VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+                             =FALSE (Exact match) / TRUE (approximate match) / column index starts from 1
+
+
+2.HLLOKUP-  (Horizontal Lookup)  (when we have data in horizontal format but we want output in vertical format then we have to use HLOOKUP)  
+            =HLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+         
+
 
 
